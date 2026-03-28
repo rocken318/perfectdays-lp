@@ -12,6 +12,8 @@ const LINKS = {
   googlePlay: '#',
   privacy: '/privacy',
   support: '/support',
+  tokusho: '/tokusho',
+  terms: '/terms',
 }
 
 // ============================================================
@@ -159,50 +161,37 @@ export default function HomePage() {
       {/* ============================================================
           Hero セクション
       ============================================================ */}
-      <section className="hero-gradient pt-32 pb-24 px-4 text-center relative overflow-hidden">
-        {/* 背景装飾 */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-pink-500/10 blur-3xl" />
-          <div className="absolute top-10 -right-20 w-96 h-96 rounded-full bg-yellow-400/10 blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-green-400/10 blur-3xl" />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* 背景コラージュ画像 */}
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-collage.jpg"
+            alt="さまざまな活動に取り組む人々のコラージュ"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* オーバーレイ: 暗めのグラデーション */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-16">
           {/* アプリバッジ */}
-          <span className="inline-block bg-white/10 text-white/80 text-xs font-medium px-4 py-1.5 rounded-full mb-6 border border-white/20">
+          <span className="inline-block bg-white/15 text-white/90 text-xs font-medium px-4 py-1.5 rounded-full mb-8 border border-white/25 backdrop-blur-sm">
             📱 iOS & Android
           </span>
 
-          <h1 className="text-5xl sm:text-7xl font-black text-white mb-4 leading-tight">
-            毎日を
-            <span className="gradient-text">100点</span>
-            に<br />しよう
+          <h1 className="text-5xl sm:text-7xl font-black text-white mb-6 leading-tight drop-shadow-lg">
+            あなたの<span className="gradient-text">頑張り</span>を<br />
+            記録し続けるアプリ
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow">
             習慣・目標・スケジュールを一元管理して、<br className="hidden sm:block" />
-            あなたの生活をスコアで可視化するアプリ
+            毎日の達成度を100点満点でスコア化しよう
           </p>
 
-          <StoreButtons className="mb-16" />
-
-          {/* スコアリングビジュアル */}
-          <div className="relative mx-auto w-48 h-48 sm:w-64 sm:h-64">
-            <div className="absolute inset-0 rounded-full border-8 border-white/10" />
-            <div
-              className="absolute inset-0 rounded-full border-8 border-transparent"
-              style={{
-                borderTopColor: '#6BCB77',
-                borderRightColor: '#FFD93D',
-                borderBottomColor: '#FF6B6B',
-                transform: 'rotate(-45deg)',
-              }}
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-5xl sm:text-6xl font-black text-white">87</span>
-              <span className="text-white/60 text-sm font-medium">今日のスコア</span>
-            </div>
-          </div>
+          <StoreButtons />
         </div>
       </section>
 
@@ -348,6 +337,8 @@ export default function HomePage() {
         <p className="font-bold text-white text-lg gradient-text mb-4">満点ライフ (PerfectDays)</p>
         <div className="flex flex-wrap gap-6 justify-center mb-6">
           <Link href={LINKS.privacy} className="hover:text-white transition-colors">プライバシーポリシー</Link>
+          <Link href={LINKS.terms} className="hover:text-white transition-colors">利用規約</Link>
+          <Link href={LINKS.tokusho} className="hover:text-white transition-colors">特定商取引法に基づく表記</Link>
           <Link href={LINKS.support} className="hover:text-white transition-colors">サポート</Link>
         </div>
         <p className="text-xs text-gray-600">© 2026 HaLVision. All rights reserved.</p>
