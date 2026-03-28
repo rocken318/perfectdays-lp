@@ -106,7 +106,7 @@ const PLAN_COMPARISON = [
 // スクリーンショット
 // ============================================================
 const SCREENSHOTS = [
-  { src: '/screenshots/screen-home.png', alt: 'ホーム採点画面', label: 'ホーム採点' },
+  { src: '/screenshots/screen-home2.png', alt: 'ホーム採点画面', label: 'ホーム採点' },
   { src: '/screenshots/screen-manage.png', alt: '目標管理画面', label: '目標管理' },
   { src: '/screenshots/screen-record.png', alt: 'スコア記録画面', label: 'スコア記録' },
   { src: '/screenshots/screen-ai-review.png', alt: 'AI総評画面', label: 'AI総評' },
