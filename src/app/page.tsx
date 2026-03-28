@@ -50,6 +50,36 @@ const FEATURES = [
     title: 'Googleカレンダー連携',
     description: '既存のカレンダーと双方向同期。スケジュール管理をまとめて一元化。',
   },
+  {
+    icon: '🎉',
+    title: '達成アニメーション',
+    description: 'スコア80点超えや全ゴール完了でお祝い演出＆褒めメッセージ。やる気が続く！',
+  },
+  {
+    icon: '🔥',
+    title: 'ストリーク＆バッジ',
+    description: '連続達成日数をカウントして節目でバッジを解除。継続するほど達成感が増す。',
+  },
+  {
+    icon: '😴',
+    title: 'お休み期間設定',
+    description: '旅行や体調不良の日は「お休み」に設定。無理なく続けられて離脱を防ぐ。',
+  },
+  {
+    icon: '⏱️',
+    title: 'ルーティンタイマー',
+    description: '習慣ごとにタイマーをセット。集中してこなせて、終わったら通知でお知らせ。',
+  },
+  {
+    icon: '🗓️',
+    title: 'デイリースケジュール表示',
+    description: 'その日の習慣を時間軸で一覧表示。上から順にこなすだけで1日が整う。',
+  },
+  {
+    icon: '📆',
+    title: '曜日設定',
+    description: '習慣ごとに実行する曜日を指定。「筋トレは週3日」など自分だけのリズムを作れる。',
+  },
 ]
 
 // ============================================================
@@ -61,6 +91,11 @@ const PLAN_COMPARISON = [
   { feature: 'スコア記録・グラフ', free: true, pro: true },
   { feature: 'SNSフィード', free: true, pro: true },
   { feature: 'Googleカレンダー連携', free: true, pro: true },
+  { feature: 'ストリーク＆バッジ', free: true, pro: true },
+  { feature: 'お休み期間設定', free: true, pro: true },
+  { feature: 'ルーティンタイマー', free: true, pro: true },
+  { feature: 'デイリースケジュール表示', free: true, pro: true },
+  { feature: '曜日設定', free: true, pro: true },
   { feature: 'AI秘書チャット', free: '月3回', pro: '無制限' },
   { feature: 'AIレビュー', free: '月1回', pro: '毎日' },
   { feature: '重みづけ自由設定', free: false, pro: true },
@@ -71,11 +106,12 @@ const PLAN_COMPARISON = [
 // スクリーンショット
 // ============================================================
 const SCREENSHOTS = [
-  { src: '/screenshots/placeholder-1.png', alt: 'ホーム採点画面' },
-  { src: '/screenshots/placeholder-2.png', alt: '目標設定画面' },
-  { src: '/screenshots/placeholder-3.png', alt: 'スコア記録グラフ' },
-  { src: '/screenshots/placeholder-4.png', alt: 'AIレビュー画面' },
-  { src: '/screenshots/placeholder-5.png', alt: 'SNSフィード' },
+  { src: '/screenshots/screen-home.png', alt: 'ホーム採点画面', label: 'ホーム採点' },
+  { src: '/screenshots/screen-manage.png', alt: '目標管理画面', label: '目標管理' },
+  { src: '/screenshots/screen-record.png', alt: 'スコア記録画面', label: 'スコア記録' },
+  { src: '/screenshots/screen-ai-review.png', alt: 'AI総評画面', label: 'AI総評' },
+  { src: '/screenshots/screen-ai-secretary.png', alt: 'AI秘書画面', label: 'AI秘書' },
+  { src: '/screenshots/screen-settings.png', alt: '設定・プラン画面', label: 'プラン設定' },
 ]
 
 // ============================================================
@@ -151,6 +187,7 @@ export default function HomePage() {
           <span className="font-black text-xl gradient-text">満点ライフ</span>
           <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
             <a href="#features" className="hover:text-gray-900 transition-colors hidden sm:block">機能</a>
+            <a href="#scoring" className="hover:text-gray-900 transition-colors hidden sm:block">スコアの仕組み</a>
             <a href="#screenshots" className="hover:text-gray-900 transition-colors hidden sm:block">スクリーンショット</a>
             <a href="#pricing" className="hover:text-gray-900 transition-colors hidden sm:block">料金</a>
             <Link href={LINKS.support} className="hover:text-gray-900 transition-colors">サポート</Link>
@@ -171,12 +208,10 @@ export default function HomePage() {
             className="object-cover"
             priority
           />
-          {/* オーバーレイ: 暗めのグラデーション */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-16">
-          {/* アプリバッジ */}
           <span className="inline-block bg-white/15 text-white/90 text-xs font-medium px-4 py-1.5 rounded-full mb-8 border border-white/25 backdrop-blur-sm">
             📱 iOS & Android
           </span>
@@ -202,7 +237,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16" data-animate>
             <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
-              あなたの毎日を変える<span className="gradient-text">6つの機能</span>
+              あなたの毎日を変える<span className="gradient-text">12の機能</span>
             </h2>
             <p className="text-gray-500 text-lg">習慣化を科学的にサポートする機能を搭載</p>
           </div>
@@ -225,9 +260,132 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
+          重みづけセクション
+      ============================================================ */}
+      <section id="scoring" className="py-24 px-4 bg-white overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16" data-animate>
+            <span className="inline-block bg-orange-50 text-orange-500 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-orange-200">
+              ⚖️ 満点ライフの核心機能
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
+              <span className="gradient-text">重みづけ</span>で、<br className="sm:hidden" />
+              あなただけのスコアを作る
+            </h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              「仕事より健康を優先したい」「今月は語学に集中したい」<br className="hidden sm:block" />
+              ——そんな価値観の違いを、スコアにそのまま反映できます。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* 左: アプリ実画面 */}
+            <div className="flex justify-center" data-animate>
+              <div className="relative w-64 sm:w-72">
+                <div className="rounded-3xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/screenshots/screen-home.png"
+                    alt="ホーム採点画面 - 重要度とスライダー"
+                    width={720}
+                    height={1560}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="absolute top-28 -right-4 sm:-right-10 bg-orange-400 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                  重要度 5 ← ここで設定
+                </div>
+                <div className="absolute top-44 -left-4 sm:-left-12 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                  達成度をスライダーで入力
+                </div>
+              </div>
+            </div>
+
+            {/* 右: 説明 */}
+            <div className="space-y-8" data-animate>
+              {/* 計算式 */}
+              <div className="bg-gray-50 rounded-2xl p-6">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-5">スコア計算の仕組み</p>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <div className="bg-orange-100 rounded-xl px-5 py-3 text-center">
+                    <p className="text-xs text-orange-400 font-medium mb-1">重要度</p>
+                    <p className="text-2xl font-black text-orange-500">1〜10</p>
+                  </div>
+                  <span className="text-2xl text-gray-300">×</span>
+                  <div className="bg-green-100 rounded-xl px-5 py-3 text-center">
+                    <p className="text-xs text-green-500 font-medium mb-1">達成度</p>
+                    <p className="text-2xl font-black text-green-600">0〜100点</p>
+                  </div>
+                  <span className="text-2xl text-gray-300">=</span>
+                  <div className="rounded-xl px-5 py-3 text-center bg-gradient-to-br from-red-50 to-yellow-50">
+                    <p className="text-xs font-medium mb-1 gradient-text">今日のスコア</p>
+                    <p className="text-2xl font-black gradient-text">100点満点</p>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-4 leading-relaxed">
+                  重要度は合計が何点でもOK。自動で比率に変換されます。<br />
+                  例：健康8・仕事6・学習4 → 比率は 44% / 33% / 22%
+                </p>
+              </div>
+
+              {/* 具体例バー */}
+              <div className="space-y-3">
+                <p className="text-sm font-bold text-gray-500">計算例（今日の達成度）</p>
+                {[
+                  { name: '健康', weight: 8, score: 90, color: '#6BCB77', total: 18 },
+                  { name: '仕事', weight: 6, score: 70, color: '#4ECDC4', total: 18 },
+                  { name: '学習', weight: 4, score: 50, color: '#FFD93D', total: 18 },
+                ].map((item) => {
+                  const ratio = Math.round((item.weight / item.total) * 100)
+                  return (
+                    <div key={item.name} className="flex items-center gap-3">
+                      <span className="text-sm font-semibold text-gray-700 w-10">{item.name}</span>
+                      <div className="flex-1 bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all"
+                          style={{ width: `${item.score}%`, backgroundColor: item.color }}
+                        />
+                      </div>
+                      <span className="text-xs text-gray-400 w-28 text-right shrink-0">
+                        {item.score}点 × 重要度{item.weight}（{ratio}%）
+                      </span>
+                    </div>
+                  )
+                })}
+                <div className="flex justify-between items-center pt-3 border-t border-gray-100">
+                  <span className="text-sm text-gray-500 font-medium">加重平均スコア</span>
+                  <span className="text-2xl font-black gradient-text">
+                    {Math.round((90 * 8 + 70 * 6 + 50 * 4) / 18)}点
+                  </span>
+                </div>
+              </div>
+
+              {/* 3ステップ */}
+              <div className="space-y-3">
+                {[
+                  { step: '1', text: 'カテゴリに重要度（1〜10）をスライダーで設定' },
+                  { step: '2', text: '毎日スライダーで各習慣の達成度を入力' },
+                  { step: '3', text: '自分の価値観に合ったスコアが自動計算される' },
+                ].map((s) => (
+                  <div key={s.step} className="flex items-center gap-3">
+                    <span
+                      className="w-7 h-7 rounded-full text-white text-xs font-black flex items-center justify-center flex-shrink-0"
+                      style={{ background: 'linear-gradient(135deg, #FF6B6B, #FFD93D)' }}
+                    >
+                      {s.step}
+                    </span>
+                    <p className="text-sm text-gray-700">{s.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
           スクリーンショットセクション
       ============================================================ */}
-      <section id="screenshots" className="py-24 px-4 bg-white overflow-hidden">
+      <section id="screenshots" className="py-24 px-4 bg-gray-50 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" data-animate>
             <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
@@ -236,21 +394,24 @@ export default function HomePage() {
             <p className="text-gray-500 text-lg">シンプルで使いやすいデザイン</p>
           </div>
 
-          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
+          <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory -mx-4 px-4">
             {SCREENSHOTS.map((s, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 snap-center w-56 sm:w-64"
+                className="flex-shrink-0 snap-center w-52 sm:w-64"
                 data-animate
-                style={{ animationDelay: `${i * 0.1}s` }}
+                style={{ animationDelay: `${i * 0.08}s` }}
               >
-                <div className="bg-gray-100 rounded-3xl aspect-[9/19] flex items-center justify-center shadow-lg overflow-hidden">
-                  {/* placeholder — 実際の画像に差し替え */}
-                  <div className="text-center text-gray-400 p-4">
-                    <div className="text-5xl mb-3">📱</div>
-                    <p className="text-xs">{s.alt}</p>
-                  </div>
+                <div className="rounded-3xl overflow-hidden shadow-xl bg-white">
+                  <Image
+                    src={s.src}
+                    alt={s.alt}
+                    width={720}
+                    height={1560}
+                    className="w-full h-auto"
+                  />
                 </div>
+                <p className="text-center text-xs font-semibold text-gray-400 mt-3">{s.label}</p>
               </div>
             ))}
           </div>
@@ -260,7 +421,7 @@ export default function HomePage() {
       {/* ============================================================
           Proプランセクション
       ============================================================ */}
-      <section id="pricing" className="py-24 px-4 bg-gray-50">
+      <section id="pricing" className="py-24 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12" data-animate>
             <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
@@ -272,7 +433,7 @@ export default function HomePage() {
           {/* プランヘッダー */}
           <div className="grid grid-cols-3 gap-4 mb-4">
             <div className="col-span-1" />
-            <div className="text-center bg-white rounded-2xl py-4 shadow-sm">
+            <div className="text-center bg-gray-50 rounded-2xl py-4 shadow-sm">
               <p className="text-xs text-gray-400 font-medium mb-1">無料プラン</p>
               <p className="text-2xl font-black text-gray-900">¥0</p>
             </div>
@@ -288,12 +449,12 @@ export default function HomePage() {
           </div>
 
           {/* 比較表 */}
-          <div className="bg-white rounded-2xl shadow-sm overflow-hidden" data-animate>
+          <div className="bg-gray-50 rounded-2xl shadow-sm overflow-hidden" data-animate>
             {PLAN_COMPARISON.map((row, i) => (
               <div
                 key={row.feature}
                 className={`grid grid-cols-3 gap-4 px-6 py-4 items-center ${
-                  i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'
+                  i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
                 }`}
               >
                 <p className="text-sm font-medium text-gray-700 col-span-1">{row.feature}</p>
