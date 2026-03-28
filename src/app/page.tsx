@@ -284,17 +284,17 @@ export default function HomePage() {
               <div className="relative w-64 sm:w-72">
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/screenshots/screen-home.png"
+                    src="/screenshots/screen-home2.png"
                     alt="ホーム採点画面 - 重要度とスライダー"
-                    width={720}
-                    height={1560}
+                    width={828}
+                    height={1792}
                     className="w-full h-auto"
                   />
                 </div>
-                <div className="absolute top-28 -right-4 sm:-right-10 bg-orange-400 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                <div className="absolute top-[42%] -right-4 sm:-right-12 bg-orange-400 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
                   重要度 5 ← ここで設定
                 </div>
-                <div className="absolute top-44 -left-4 sm:-left-12 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                <div className="absolute top-[55%] -left-4 sm:-left-14 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
                   達成度をスライダーで入力
                 </div>
               </div>
@@ -383,9 +383,99 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================
+          デイリースケジュールセクション
+      ============================================================ */}
+      <section className="py-24 px-4 bg-gray-50 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16" data-animate>
+            <span className="inline-block bg-blue-50 text-blue-500 text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-blue-200">
+              🗓️ 1アプリで全部解決
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
+              時間を設定すれば、<br />
+              <span className="gradient-text">毎日のスケジュール帳</span>になる
+            </h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              習慣に「何時にやる」を追加するだけ。<br className="hidden sm:block" />
+              採点アプリがそのままスケジュール管理ツールに変わります。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* 左: 説明 */}
+            <div className="space-y-6 order-2 lg:order-1" data-animate>
+              {[
+                {
+                  icon: '⏰',
+                  title: '時間を設定するだけ',
+                  desc: '各習慣に「7:00〜7:30」などの時間帯を設定するだけ。自動で時系列に並び替えてスケジュール表示に切り替わります。',
+                  color: 'bg-blue-50 border-blue-200',
+                  iconBg: 'bg-blue-100 text-blue-500',
+                },
+                {
+                  icon: '📋',
+                  title: '採点とスケジュールを一画面で',
+                  desc: '「採点」タブで達成度を入力、「スケジュール」タブで今日の予定を確認。アプリを切り替える必要なし。',
+                  color: 'bg-purple-50 border-purple-200',
+                  iconBg: 'bg-purple-100 text-purple-500',
+                },
+                {
+                  icon: '✅',
+                  title: 'こなしたらチェックして達成度に反映',
+                  desc: 'スケジュール上でタスクをチェックすると、達成度スライダーに自動反映。二度手間なく記録できます。',
+                  color: 'bg-green-50 border-green-200',
+                  iconBg: 'bg-green-100 text-green-500',
+                },
+                {
+                  icon: '⏱️',
+                  title: 'タイマーでその場で集中',
+                  desc: 'タスクをタップするとカウントダウンタイマーを起動。終了時にプッシュ通知で次の習慣へ自然に移れます。',
+                  color: 'bg-orange-50 border-orange-200',
+                  iconBg: 'bg-orange-100 text-orange-500',
+                },
+              ].map((item) => (
+                <div key={item.title} className={`flex gap-4 p-5 rounded-2xl border ${item.color}`}>
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-xl flex-shrink-0 ${item.iconBg}`}>
+                    {item.icon}
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-900 mb-1">{item.title}</p>
+                    <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 右: スクリーンショット */}
+            <div className="flex justify-center order-1 lg:order-2" data-animate>
+              <div className="relative w-64 sm:w-72">
+                <div className="rounded-3xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/screenshots/screen-home2.png"
+                    alt="ホーム画面 - 採点とスケジュールタブ"
+                    width={828}
+                    height={1792}
+                    className="w-full h-auto"
+                  />
+                </div>
+                {/* 吹き出し: スケジュールタブ */}
+                <div className="absolute top-[30%] -right-4 sm:-right-14 bg-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                  スケジュールタブに切り替えも！
+                </div>
+                {/* 吹き出し: ストリーク */}
+                <div className="absolute top-[14%] -left-4 sm:-left-12 bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                  🔥 連続達成ストリーク
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
           スクリーンショットセクション
       ============================================================ */}
-      <section id="screenshots" className="py-24 px-4 bg-gray-50 overflow-hidden">
+      <section id="screenshots" className="py-24 px-4 bg-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12" data-animate>
             <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
